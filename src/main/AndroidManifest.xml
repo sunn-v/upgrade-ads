@@ -5,6 +5,7 @@
         <activity
             android:name=".UpgradeAdsActivity"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/ActivityTheme" />
     </application>
 </manifest>
