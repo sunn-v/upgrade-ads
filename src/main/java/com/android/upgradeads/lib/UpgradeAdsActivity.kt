@@ -48,15 +48,12 @@ class UpgradeAdsActivity: AppCompatActivity() {
     }
 
     private fun startCountdown() {
-        Log.d("UpgradeActivity", "Start Countdown")
         val timer = object: CountDownTimer(UpgradeAds.time * 1000L, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.d("UpgradeActivity", "Countdown: $millisUntilFinished")
                 tvCountdown.text = "${millisUntilFinished / 1000}"
             }
 
             override fun onFinish() {
-                Log.d("UpgradeActivity", "Countdown finished")
                 tvCountdown.isVisible = false
                 btnClose.isVisible = true
                 isFinishedCountdown = true
@@ -65,6 +62,7 @@ class UpgradeAdsActivity: AppCompatActivity() {
         timer.start()
     }
 
+    @Suppress("DEPRECATION")
     override fun onBackPressed() {
         if (isFinishedCountdown) {
             super.onBackPressed()
