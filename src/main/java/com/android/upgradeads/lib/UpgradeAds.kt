@@ -19,7 +19,7 @@ object UpgradeAds {
 
     private fun isShowUpgradeAds(): Boolean {
         val _ratio = Random.nextFloat()
-        return _ratio > ratio
+        return _ratio < ratio
     }
 
     fun setOnUpgradeAction(action: SimpleAction) {
