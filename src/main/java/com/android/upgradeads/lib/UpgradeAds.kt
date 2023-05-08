@@ -2,17 +2,19 @@ package com.android.upgradeads.lib
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import kotlin.random.Random
 
 
 object UpgradeAds {
 
-    internal var time : Int = 5
+    internal var time: Int = 15
     private var ratio: Float = 0.5f
     internal var upgradeAction: SimpleAction? = null
     internal var onCloseAction: SimpleAction? = null
 
-    fun init(ratio: Float = 0.5f, time: Int = 5) {
+    fun init(ratio: Float = 0.5f, time: Int = 15) {
         UpgradeAds.ratio = ratio
         UpgradeAds.time = time
     }
@@ -31,11 +33,17 @@ object UpgradeAds {
             onFailed.invoke()
             return
         }
-        forceShow(context, onClosed)
+        forceShow(context, time, onClosed)
     }
 
-    fun forceShow(context: Context, onClosed: SimpleAction) {
+    fun forceShow(context: Context, time: Int = UpgradeAds.time, onClosed: SimpleAction) {
         onCloseAction = onClosed
-        context.startActivity(Intent(context, UpgradeAdsActivity::class.java))
+        context.startActivity(Intent(context, UpgradeAdsActivity::class.java).apply {
+            putExtras(
+                bundleOf(
+                    "time" to time
+                )
+            )
+        })
     }
 }

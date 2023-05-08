@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
-class UpgradeAdsActivity: AppCompatActivity() {
+class UpgradeAdsActivity : AppCompatActivity() {
 
     private lateinit var tvContent: TextView
     private lateinit var tvCountdown: TextView
@@ -48,9 +48,14 @@ class UpgradeAdsActivity: AppCompatActivity() {
     }
 
     private fun startCountdown() {
-        val timer = object: CountDownTimer(UpgradeAds.time * 1000L, 1000) {
+        val time = intent.extras?.getInt("time", 15) ?: 15
+        val timer = object : CountDownTimer(time * 1000L, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                tvCountdown.text = "${millisUntilFinished / 1000}"
+                val seconds = millisUntilFinished / 1000
+                tvCountdown.text = "$seconds"
+                if (seconds <= 5) {
+                    btnUpgrade.isVisible = true
+                }
             }
 
             override fun onFinish() {
