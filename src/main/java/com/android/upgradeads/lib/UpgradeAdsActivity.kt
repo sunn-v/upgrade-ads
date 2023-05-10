@@ -59,6 +59,7 @@ class UpgradeAdsActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                btnUpgrade.isVisible = true
                 tvCountdown.isVisible = false
                 btnClose.isVisible = true
                 isFinishedCountdown = true
