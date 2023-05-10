@@ -13,7 +13,7 @@ class UpgradeAdsActivity : AppCompatActivity() {
 
     private lateinit var tvContent: TextView
     private lateinit var tvCountdown: TextView
-    private lateinit var btnClose: ImageView
+    private lateinit var btnClose: Button
     private lateinit var btnUpgrade: Button
 
     private var isFinishedCountdown: Boolean = false
@@ -31,7 +31,7 @@ class UpgradeAdsActivity : AppCompatActivity() {
 
         tvContent = findViewById(R.id.text_content)
 
-        btnClose = findViewById<ImageView>(R.id.btn_close).apply {
+        btnClose = findViewById<Button>(R.id.btn_close).apply {
             setOnClickListener {
                 finish()
                 UpgradeAds.onCloseAction?.invoke()
