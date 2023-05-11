@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
@@ -39,6 +40,12 @@ class UpgradeAdsActivity : AppCompatActivity() {
         }
 
         tvCountdown = findViewById(R.id.text_count_down)
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            /* override back pressing */
+            override fun handleOnBackPressed() {
+                //Your code here
+            }
+        })
 
     }
 
@@ -46,6 +53,7 @@ class UpgradeAdsActivity : AppCompatActivity() {
         super.onResume()
         startCountdown()
     }
+
 
     private fun startCountdown() {
         val time = intent.extras?.getInt("time", 15) ?: 15
@@ -70,9 +78,9 @@ class UpgradeAdsActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     override fun onBackPressed() {
-        if (isFinishedCountdown) {
-            super.onBackPressed()
-        }
+//        if (isFinishedCountdown) {
+//            super.onBackPressed()
+//        }
     }
 
 }
