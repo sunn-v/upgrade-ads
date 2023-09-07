@@ -9,19 +9,20 @@ import kotlin.random.Random
 
 object UpgradeAds {
 
-    internal var time: Int = 15
+    internal var time: Int = 20
     private var ratio: Float = 0.5f
     internal var upgradeAction: SimpleAction? = null
     internal var onCloseAction: SimpleAction? = null
 
-    fun init(ratio: Float = 0.5f, time: Int = 15) {
+    fun init(ratio: Float = 0.5f, time: Int = 20) {
         UpgradeAds.ratio = ratio
         UpgradeAds.time = time
     }
 
     private fun isShowUpgradeAds(): Boolean {
-        val _ratio = Random.nextFloat()
-        return _ratio < ratio
+//        val _ratio = Random.nextFloat()
+//        return _ratio < ratio
+        return true
     }
 
     fun setOnUpgradeAction(action: SimpleAction) {
