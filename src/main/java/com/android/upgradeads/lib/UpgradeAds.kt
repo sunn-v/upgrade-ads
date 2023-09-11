@@ -29,6 +29,25 @@ object UpgradeAds {
         upgradeAction = action
     }
 
+    fun show(context: Context, onClosed: SimpleAction, onFailed: SimpleAction) {
+        if (isShowUpgradeAds().not()) {
+            onFailed.invoke()
+            return
+        }
+        forceShow(context, time, onClosed)
+    }
+
+    fun forceShow(context: Context, time: Int = UpgradeAds.time, onClosed: SimpleAction) {
+        onCloseAction = onClosed
+        context.startActivity(Intent(context, UpgradeAdsActivity::class.java).apply {
+            putExtras(
+                bundleOf(
+                    "time" to time
+                )
+            )
+        })
+    }
+
     fun show(fragmentManager: FragmentManager, onClosed: SimpleAction, onFailed: SimpleAction) {
         if (isShowUpgradeAds().not()) {
             onFailed.invoke()
@@ -40,12 +59,5 @@ object UpgradeAds {
     fun forceShow(fragmentManager: FragmentManager, time: Int = UpgradeAds.time, onClosed: SimpleAction) {
         onCloseAction = onClosed
         UpgradeAdsDialog.showDialog(fragmentManager)
-//        context.startActivity(Intent(context, UpgradeAdsActivity::class.java).apply {
-//            putExtras(
-//                bundleOf(
-//                    "time" to time
-//                )
-//            )
-//        })
     }
 }
