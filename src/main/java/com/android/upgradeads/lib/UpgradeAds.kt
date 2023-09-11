@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
 import kotlin.random.Random
 
 
@@ -28,22 +29,23 @@ object UpgradeAds {
         upgradeAction = action
     }
 
-    fun show(context: Context, onClosed: SimpleAction, onFailed: SimpleAction) {
+    fun show(fragmentManager: FragmentManager, onClosed: SimpleAction, onFailed: SimpleAction) {
         if (isShowUpgradeAds().not()) {
             onFailed.invoke()
             return
         }
-        forceShow(context, time, onClosed)
+        forceShow(fragmentManager, time, onClosed)
     }
 
-    fun forceShow(context: Context, time: Int = UpgradeAds.time, onClosed: SimpleAction) {
+    fun forceShow(fragmentManager: FragmentManager, time: Int = UpgradeAds.time, onClosed: SimpleAction) {
         onCloseAction = onClosed
-        context.startActivity(Intent(context, UpgradeAdsActivity::class.java).apply {
-            putExtras(
-                bundleOf(
-                    "time" to time
-                )
-            )
-        })
+        UpgradeAdsDialog.showDialog(fragmentManager)
+//        context.startActivity(Intent(context, UpgradeAdsActivity::class.java).apply {
+//            putExtras(
+//                bundleOf(
+//                    "time" to time
+//                )
+//            )
+//        })
     }
 }

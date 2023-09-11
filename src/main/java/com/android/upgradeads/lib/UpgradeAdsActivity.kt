@@ -25,7 +25,7 @@ class UpgradeAdsActivity : AppCompatActivity() {
 
         btnUpgrade = findViewById<Button>(R.id.btn_upgrade).apply {
             setOnClickListener {
-                finish()
+//                finish()
                 UpgradeAds.upgradeAction?.invoke()
             }
         }
